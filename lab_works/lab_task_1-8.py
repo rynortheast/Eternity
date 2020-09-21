@@ -12,12 +12,13 @@ def launch(lesson, number):
         message = input('Обратный попугай, повторяй за мной: ')
         reverse_parrot(message.split(' '))
 
-# Outputs the same text with input data
+# task 1.1
 def horoscope(name, surname, animal, zodiac):
     print('Индивидуальный гороскоп для пользователя: ', name, ' ', surname, '\n',
         'Кем Вы были в прошлой жизни: ', animal, '\n',
         'Ваш знак зодиака - ', zodiac, '. Поэтому Вы - тонко чувствующая натура.', sep = '')
 
+# task 1.2
 def bit_reminder():
     print('1 бит = минимальная единица количества информации. \n',
         '1 байт = 8 бит \n',
@@ -25,10 +26,70 @@ def bit_reminder():
         '1 Килобайт = 1024 байта. \n',
         '1 Килобайт = ', 1024 * 8, ' бит.', sep = '')
 
+# task 1.3
 def reverse_parrot(message):
     message.reverse()
     for word in message:
         print(word)
-        
 
-launch(1, 3)
+# --------------------------------------------------------------------------------------- #
+
+# task 2.1
+def maze():
+    print('temporarily not working :(')
+
+# task 2.2
+def mail_registration():
+    while True:
+        login = input('Логин: ')
+        email = input('Резервная почта: ')
+        if login.find('@') != -1 or not login:
+            print('Некорректный логин. Попробуйте еще раз. \n')
+            continue
+        elif email.find('@') == -1:
+            print('Некорректная резервная почта. Попробуйте еще раз. \n')
+            continue
+        break
+    print('Ok')
+
+# task 2.3
+def schizophrenia():
+    print('О, привет!')
+    answer = input('Как дела? Как настроение? \n - ')
+    if answer.find('хорош') != -1 or answer.find('прекра') != -1:
+        print('Отлчично. У меня тоже все классно („• ֊ •„)')
+    elif answer.find('плохо') != -1  or answer.find('грустно') != -1:
+        print('Печально, но главное не переживай. Скоро все будет супер ⊂( ´ ▽ ` )⊃')
+    else:
+        print('моя твоя не понемать, брат')
+
+# task 2.4
+def da_or_net():
+    first = input('#1 - Да или Нет: ')
+    second = input('#2 - Да или Нет: ')
+    if first.lower() == 'да' or first.lower() == 'нет':
+        if second.lower() == 'да' or second.lower() == 'нет':
+            print('Верно!')
+            return
+    print('Неверно!')
+
+# task 2.5
+def personality_test():
+    print('temporarily not working :(')
+
+# --------------------------------------------------------------------------------------- #
+
+# task 3.1
+def plus_or_minus():
+    try:
+        number = float(input('Любое дробное число - '))
+    except:
+        print('Некорректное дробное число!')
+        return
+    if float(number) > 0:
+        print('+')
+    elif float(number) < 0:
+        print('-')
+    else:
+        print('0')
+
