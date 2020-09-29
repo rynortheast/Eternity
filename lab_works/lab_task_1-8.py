@@ -37,20 +37,47 @@ def reverse_parrot(message):
 # --------------------------------------------------------------------------------------- #
 
 # task 2.1
-def checkInt():
-    message = input(' - Куда идем? (1-5): ')
+cave = list(range(10))
+ui_cave_door_left = '┬┴┬┴┤ '
+ui_cave_door_right = ' ├┬┴┬┴'
+ui_cave_sten = '┬┴┬┴┬┴┬┴┬┴┬┴┬'
+
+def checkInt(step):
+    message = input(' - Куда идем? (1-' + str(step) + '): ')
     while not message.isdigit():
         message = input('\n Некорректно. Куда идем? (1-5): ')
     return int(message)
 
+def regenCave(number):
+    room = 0
+    print(' ')
+    while number > room:
+        room = random.randint(2,5)
+    was = room
+    rty = 1
+    for step in range(5):
+        if was == (5 - step):
+            print(ui_cave_door_left, rty, ui_cave_door_right,end='', sep=' ')
+            rty += 1
+            was -= 1
+            continue
+        elif was == 0:
+            print(ui_cave_sten, end='', sep='')
+            continue
+        elif (random.randint(0,1)):
+            print(ui_cave_door_left, rty, ui_cave_door_right,end='', sep=' ')
+            rty += 1
+            was -= 1
+            continue    
+        print(ui_cave_sten, end='', sep='')
+    return room
+
 def maze():
     end = False
     attempt = 0
-    cave = list(range(10))
-    ui_cave = '┬┴┬┴┤   ├┬┴┬┴'
-
-    lucky = 0
-    
+    level = 1
+    # lucky = 0 - Параметр, отвечающий за удачу игрока, который влияет на исход игры
+ 
     for step in range(10):
         cave[step] = random.randint(1, 4)
         print(cave[step], end=', ')
@@ -58,21 +85,25 @@ def maze():
     # Starting a greeting
     print('\n \n')
     print('Oh, no, you\'re lost in a cave! You need to get out of here..(')
-    print('ヽ(`⌒´メ)ノ Are you ready? Let\'s go! ~ ~ ~ ~ ~ ~ ')
+    print('ヽ(`⌒´メ)ノ Are you ready? Let\'s go! ~ ~ ~ ~ ~ ~ \n')
 
-    while end == False:
+    while not end:
         if attempt != 0:
-            print('\n - oh, shit, here we go again') # Позже необходимо поменять фразу
+            print('\n __________________________________________________________________________________\n ')
+            print(' - oh, shit, here we go again') # Позже необходимо поменять фразу.
+            print(' - It looks like you\'ve returned to your starting location. Let\'s try again (눈_눈)')
         for step in cave:
-            print('\n' * 2, ui_cave * 5, end='', sep='')
-            if checkInt() == step:
-                print('\n - Вы проходите дальше :)')
+            # if random.randint(1, 5) == 2: - Дополнитекльный функционал. Побочные действия, влияющий на итог игры.
+            if level == 11:
+                end = True
+                break
+            if checkInt(regenCave(step)) == step:
+                print('\n - Great! You have come to the location with the number ' , level, ' ᕕ( ᐛ )ᕗ', sep='')
+                level += 1
                 continue
             attempt += 1
+            level = 1
             break
-
-
-maze()
 
 # task 2.2
 def mail_registration():
