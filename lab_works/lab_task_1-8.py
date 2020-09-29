@@ -38,7 +38,7 @@ def reverse_parrot(message):
 
 # task 2.1
 def checkInt():
-    message = input('- Куда идем? (1-5): ')
+    message = input(' - Куда идем? (1-5): ')
     while not message.isdigit():
         message = input('\n Некорректно. Куда идем? (1-5): ')
     return int(message)
@@ -47,7 +47,7 @@ def maze():
     end = False
     attempt = 0
     cave = list(range(10))
-    ui_cave = '[‾‾]  '
+    ui_cave = '┬┴┬┴┤   ├┬┴┬┴'
 
     lucky = 0
     
@@ -55,13 +55,18 @@ def maze():
         cave[step] = random.randint(1, 4)
         print(cave[step], end=', ')
 
+    # Starting a greeting
+    print('\n \n')
+    print('Oh, no, you\'re lost in a cave! You need to get out of here..(')
+    print('ヽ(`⌒´メ)ノ Are you ready? Let\'s go! ~ ~ ~ ~ ~ ~ ')
+
     while end == False:
         if attempt != 0:
-            print('\n oh, shit, here we go again') # Позже необходимо поменять фразу
+            print('\n - oh, shit, here we go again') # Позже необходимо поменять фразу
         for step in cave:
             print('\n' * 2, ui_cave * 5, end='', sep='')
             if checkInt() == step:
-                print('\n Вы проходите дальше :)')
+                print('\n - Вы проходите дальше :)')
                 continue
             attempt += 1
             break
