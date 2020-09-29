@@ -1,3 +1,5 @@
+import random
+
 # the core file used to start laboratory task
 def launch(lesson, number):
     if lesson == 1 and number == 1:
@@ -35,8 +37,37 @@ def reverse_parrot(message):
 # --------------------------------------------------------------------------------------- #
 
 # task 2.1
+def checkInt():
+    message = input('- Куда идем? (1-5): ')
+    while not message.isdigit():
+        message = input('\n Некорректно. Куда идем? (1-5): ')
+    return int(message)
+
 def maze():
-    print('temporarily not working :(')
+    end = False
+    attempt = 0
+    cave = list(range(10))
+    ui_cave = '[‾‾]  '
+
+    lucky = 0
+    
+    for step in range(10):
+        cave[step] = random.randint(1, 4)
+        print(cave[step], end=', ')
+
+    while end == False:
+        if attempt != 0:
+            print('\n oh, shit, here we go again') # Позже необходимо поменять фразу
+        for step in cave:
+            print('\n' * 2, ui_cave * 5, end='', sep='')
+            if checkInt() == step:
+                print('\n Вы проходите дальше :)')
+                continue
+            attempt += 1
+            break
+
+
+maze()
 
 # task 2.2
 def mail_registration():
@@ -92,5 +123,3 @@ def plus_or_minus():
         print('-')
     else:
         print('0')
-
-#
