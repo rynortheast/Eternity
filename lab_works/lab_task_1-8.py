@@ -140,10 +140,6 @@ def da_or_net():
             return
     print('Неверно!')
 
-# task 2.5
-def personality_test():
-    print('temporarily not working :(')
-
 # --------------------------------------------------------------------------------------- #
 
 # task 3.1
@@ -153,9 +149,46 @@ def plus_or_minus():
     except:
         print('Некорректное дробное число!')
         return
-    if float(number) > 0:
+    if number > 0:
         print('+')
-    elif float(number) < 0:
+    elif number < 0:
         print('-')
     else:
         print('0')
+
+def calculator():
+    while True:
+        try:
+            number_1 = float(input('Ваше первое число - '))
+            number_2 = float(input('Ваше второе число - '))
+        except:
+            print('\n- Некорректное число. Попробуйте еще раз!')
+            continue
+        sign = input('Какое действие выполнить? - ')
+        break
+    if sign == '+':
+        print('Ответ -', number_1 + number_2)
+    elif sign == '-':
+        print('Ответ -', number_1 - number_2)
+    elif sign == '*':
+        print('Ответ -', number_1 * number_2)
+    elif sign == '/':
+        print('Ответ -', number_1 / number_2)
+    else:
+        print('888888 - еррор (눈_눈)')
+
+def leap_years():
+    year = str()
+    while not year.isdigit():
+        year = input('Какой год желаете проверить? - ')
+        if not year.isdigit():
+            print('\n- Ошибка ввода. Попробуйте еще раз! ')
+            continue
+    if int(year) / 4 == 0 and int(year) / 100 != 0:
+        print('- Високосный')
+    elif int(year) / 400 == 0:
+        print('- Високосный')
+    else:
+        print('- Не високосный')
+
+leap_years()
