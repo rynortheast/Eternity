@@ -156,6 +156,7 @@ def plus_or_minus():
     else:
         print('0')
 
+# task 3.2
 def calculator():
     while True:
         try:
@@ -177,6 +178,7 @@ def calculator():
     else:
         print('888888 - еррор (눈_눈)')
 
+# task 3.3
 def leap_years():
     year = str()
     while not year.isdigit():
@@ -184,11 +186,75 @@ def leap_years():
         if not year.isdigit():
             print('\n- Ошибка ввода. Попробуйте еще раз! ')
             continue
-    if int(year) / 4 == 0 and int(year) / 100 != 0:
+    if int(year) % 4 == 0 and int(year) % 100 != 0:
         print('- Високосный')
-    elif int(year) / 400 == 0:
+    elif int(year) % 400 == 0:
         print('- Високосный')
     else:
         print('- Не високосный')
 
-leap_years()
+# task 3.4
+def asunder():
+    number = int(input('Введите любое число - '))
+    if number % 2 == 1:
+        print('- Нечетное')
+    else: 
+        print('- Четное')
+
+# task 3.5
+def layout():
+    print('Let\'s try the veteran layout method (´･ᴗ･ ` )')
+    name = input('- Введите своё имя: ')
+    print('Лучшая длина -:', len(name) * 2 + 3)
+
+# task 3.7
+def beautiful_numb():
+    number = input('Какое число тестируем? - ')
+    while len(number) != 3 or not number.isdigit():
+        number = input('\n- Ой, какая-то ошибка! Попробуй еще раз (눈_눈) - ')
+    if (int(number[0]) + int(number[2])) / 2 == int(number[1]):
+        print('Ого! Вы ввели красивое число ~ ~ ~')
+        return
+    print('Жаль! Ваше число не такое красивое как 468 (눈_눈)')
+
+# task 3.9
+def telegrams():
+    text = input('Один символ = 40 копеек. Напиши и посчитаем! - ')
+    print('- Твое сообщение стоит нам: ', len(text) * 40 // 100, 'р. ', len(text) * 40 % 100, 'коп. ', sep='')
+
+# task 4.1
+def stroki():
+    text = str()
+    word = str()
+    print('Добро пожаловать! Я программа-психотерапевт. Что расскажите? ヽ(°〇°)ﾉ \n')
+    while word != 'Спасибо.':
+        print(len(word))
+        text += word
+        print(len(text))
+        word = input('- ')
+    print(len(text + word))
+
+# task 4.4
+def vkPassword():
+    print('Необходимо придумать пароль |ʘ‿ʘ)╯')
+    while True:
+        pass_1 = input('- Новый пароль: ')
+        if len(pass_1) < 8:
+            print('\nВаш пароль короткий! Попробуйте еще раз.')
+            continue
+        elif pass_1.isalpha() or pass_1.isnumeric():
+            print('\nВаш пароль простой! Попробуйте еще раз.')
+            continue
+        pass_2 = input('- Повторите пароль: ')
+        if pass_1 != pass_2:
+            print('\nПароли различаются! Попробуйте еще раз.')
+            continue
+        print('Поздравляю! Пароль создан |ʘ‿ʘ)╯')
+        break
+
+
+
+
+
+
+
