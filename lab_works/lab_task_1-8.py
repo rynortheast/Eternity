@@ -252,8 +252,24 @@ def vkPassword():
         print('Поздравляю! Пароль создан |ʘ‿ʘ)╯')
         break
 
-
-
+# task 4.5
+def syracuse():
+    counter = 0
+    number = input('- Введите стартовое число: ')
+    while not number.isdigit():
+        print('\nВарнинг! Попробуйте еще раз.. o/')
+        number = input('- Введите стартовое число: ')
+    number = int(number)
+    while number != 1:
+        print(int(number), end=' -> ')
+        if number % 2 == 0:
+            number = number / 2
+        else:
+            number = 3 * number + 1
+        counter += 1
+    print(int(number), end='')
+    print('\nХодов до единицы -', counter)
+    
 
 
 
