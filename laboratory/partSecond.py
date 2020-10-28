@@ -1,3 +1,4 @@
+import random
 
 # the core file used to start laboratory task
 def launch(lesson, number):
@@ -125,6 +126,7 @@ def buyProduct():
         myList.append(str(checkForNumber(input(' - Ввод кол-во товара - '))) + 'шт')
     print('', *myList, sep='\n')
 
+# task 12.4
 def RLE():
     sequence = input('- Ввод числовой последовательности (ノ°益°)ノ - ')
     number = int(sequence[0])
@@ -138,6 +140,80 @@ def RLE():
             counter += 1
     print(str(counter) + ' - ' + str(number))
     
-RLE()
-        
+# task 13.1 - Напёрстки
+def thimbles():
+    thimb = " [(ʘ ʖ̯ ʘ)] "
 
+    print('Добро пожаловать в 0SkillGarbage! (≖ ͜ʖ≖) ')
+    numberThimb = checkForNumber(input('- Какое кол-во напёрстников используем? - '))
+    numberSwap = checkForNumber(input('- Какое кол-во перестановок делаем? - '))
+    searchNumber = checkForNumber(input('- Какое число будем искать? (' + str(1) + '-' + str(numberThimb) + ') - '))
+    while searchNumber > numberThimb:
+        searchNumber = checkForNumber(input('- ОШИБКА! Какое число будем искать? (' + str(1) + '-' + str(numberThimb) + ') - '))
+    # kodSettings = input('- Нужен ли код настройки? - ')
+
+    game = list(range(1, numberThimb + 1))
+
+    print('\n ~~~~~~~~~~ Да начнем нашу игру! ( ͡ᵔ ͜ʖ ͡ᵔ) ~~~~~~~~~~ \n')
+    for step in range(numberSwap):
+        indexs = (random.randint(0, numberThimb - 1), random.randint(0, numberThimb - 1))
+        game[indexs[0]], game[indexs[1]] = game[indexs[1]], game[indexs[0]]
+    
+    for step in range(numberThimb):
+        print(' [' + str(step + 1) + '(ʘ ʖ̯ ʘ)' + str(step + 1) + '] ', sep='', end=' ')
+
+    print(game)
+    while True:
+        vibor = checkForNumber(input('\n- Твой выбор это.. - '))
+        try:
+            if game[vibor - 1] == searchNumber:
+                break
+        except:
+            print(' ')
+        print(' - Не повезло. Ок, пробуй еще один раз ( ͡ᵔ ͜ʖ ͡ᵔ)')
+    print('Поздравляю! Ты нашёл нужное число. Игра окончена! (≖ ͜ʖ≖)')
+
+# task 13.2 - Сортировка в обратном порядке
+def revSorded():
+    number = checkForNumber(input('Какое кол-во чисел ждать? - '))
+    collection = list(range(number))
+    for step in range(number):
+        collection[step] = checkForNumber(input('- Ввод числа №' + str(step + 1) + ': '))
+    collection = sorted(collection)
+    collection.reverse()
+    print(*collection)
+
+# task 13.3 - A272727
+def A272727():
+    number = checkForNumber(input('- Какую длину последовательности ждёте? - '))
+    bag = (0, 1, 0, 3, 0, 3, 0)
+    col = list()
+    counter = 0
+
+    for step in range(number):
+        if step + 1 <= len(bag):
+            col.append(bag[step])
+        else:
+            for i in range(len(col)):
+                if col[i] == col[0 - 1 - i]:
+                    counter += 1
+            col.append(counter)
+            counter = 0
+
+    if number == 0:
+        print('Игра окончена, так и не начавшись! (≖ ͜ʖ≖)')
+    else:
+        print('Вот вся последовательность:', *col)
+
+# task 13.6 - Большие буквы №2
+def bigWord():
+    text = input('- Ввод любого текста - ')
+    codeChar = (' * * ***** ** *', '** * *** * *** ', ' * * **  * * * ')
+    
+    print('\n~ Преобразуем ваш текст в большие буквы! (≖ ͜ʖ≖) \n')
+    for step in range(0, 15, 3):
+        for i in range(len(text)):
+            for j in range(3):
+                print(codeChar[i][j + step], end='', sep='')
+            print('  ', sep='', end='')
+        print('')    
