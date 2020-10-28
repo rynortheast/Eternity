@@ -220,4 +220,22 @@ def vertDiag():
             print(' ', end='')
         print('*')
 
-vertDiag()
+
+# task 15.1 - Гэтсби
+def gadsby():
+    bykva = input('- Введите букву, которую будем искать - ')
+    words = input('- Введите предложение, в котором будем искать нужную букву - ')
+    print(*[step for step in words.lower().split(' ') if str(step).find(bykva.lower()) != -1], sep='\n') 
+
+# task 15.2 - Знаков без пробелов
+def sqwn():
+    text = input('- Введите любой текст - ')
+    print(' - Длина текста составляет -', len(''.join(''.join(text.strip().split(' ')).split('\t'))))
+
+# task 15.3 - Длинношееееед
+def longNecked():
+    word = input('- Введите слово - ')
+    col = [word.count(step) for step in list(word)]
+    print(' - Максимальное кол-во раз -', max(col))
+
+longNecked()
