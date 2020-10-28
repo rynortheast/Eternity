@@ -238,4 +238,52 @@ def longNecked():
     col = [word.count(step) for step in list(word)]
     print(' - Максимальное кол-во раз -', max(col))
 
-longNecked()
+# task 16.3 - Бактериям бой!
+def bacteria():
+    size = checkForNumber(input('- Введите размер квадратного поля - '))
+    col = [[random.randint(1, 20) for step in range(size)] for step in range(size)]
+    
+    # print(*col, sep='\n')
+    for step in range(checkForNumber(input('- Введите кол-во капель антибиотика - '))):
+        x = checkForNumber(input(' - Координата x выстрела №' + str(step + 1) + ' = ')) - 1
+        y = checkForNumber(input(' - Координата y выстрела №' + str(step + 1) + ' = ')) - 1
+        for i in range(x - 1, x + 2):
+            for k in range(y - 1, y + 2):
+                try:
+                    if col[i][k] - 4 <= 0:
+                        col[i][k] = 0
+                    else:
+                        col[i][k] -= 4
+                except:
+                    continue
+    print('', *col, sep='\n')    
+def checkBacteria(one, two):
+    if one - two < 0:
+        return 0
+    return one - two
+
+# task 16.4 - Экономия
+def economy():
+    size = checkForNumber(input('- Введите размер расписания - '))
+    col = [[checkStation(k, j) for j in range(size)] for k in range(size)]
+    
+    route = input('- Введите свой маршрут - ').split(' ')
+
+    price = 1000
+    stantion = 1000
+    for step in range(size):
+        if col[int(route[0]) - 1][step] == 0:
+            continue
+        if col[int(route[0]) - 1][step] + col[step][int(route[1]) - 1] < price:
+            price = col[int(route[0]) - 1][step] + col[step][int(route[1]) - 1]
+            stantion = step + 1
+    print(*col, sep='\n')
+    print('Пересадка через станцию №' + str(stantion) + ' - цена поездки = ' + str(price))
+def checkStation(k, j):
+    if k == j:
+        return 0
+    return random.randint(1, 9)
+
+economy()
+
+
