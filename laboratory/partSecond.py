@@ -216,4 +216,6 @@ def bigWord():
             for j in range(3):
                 print(codeChar[i][j + step], end='', sep='')
             print('  ', sep='', end='')
-        print('')    
+        print('')
+
+#test
