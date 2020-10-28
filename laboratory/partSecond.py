@@ -202,3 +202,22 @@ def bigWord():
                 print(codeChar[i][j + step], end='', sep='')
             print('  ', sep='', end='')
         print('')
+
+# task 14.3 - Маяковский
+def mayk():
+    print(*input('@ ~ Ввод любого текста: ').split(' '), sep='\n')
+
+# task 14.4 - Вертикальная диаграмма
+def vertDiag():
+    col = input('- Ввод нескольких натуральных чисел через пробел - ').split(' ')
+    print('*'*(len(col) + 2), '\n*' + ' '*len(col) + '*', sep='')
+    for step in range(int(max(col))):
+        print('*', end='')
+        for i in range(len(col)):
+            if int(max(col)) - int(col[i]) - step <= 0:
+                print('*', end='')
+                continue
+            print(' ', end='')
+        print('*')
+
+vertDiag()
