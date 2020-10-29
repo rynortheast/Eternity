@@ -157,3 +157,26 @@ white.append(black)
 white.append(black)
 wb_tree = black
 
+# task 22.2 - Частичные суммы
+def partial_sums(*mass):
+    col = [0]
+    for i in range(len(mass)):
+        col.append(col[i] + mass[i])
+    return col
+# print(partial_sums(1, 0.5, 0.25, 0.125))
+
+# task 22.3 - Дартс
+scoring = {
+    'Яблочко':50,
+    'Зеленое кольцо':25,
+    'Внутреннее кольцо':[(step + 1) * 3 for step in range(20)],
+    'Внешнее кольцо':[(step + 1) * 2 for step in range(20)],
+}
+def score(*args):
+    if args[0] == 'Яблочко' or args[0] == 'Зеленое кольцо':
+        return scoring[args[0]]
+    else:
+        return scoring[args[0]][args[1] - 1]
+# print(score('Внешнее кольцо', 15))
+
+
