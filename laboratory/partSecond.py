@@ -284,6 +284,25 @@ def checkStation(k, j):
         return 0
     return random.randint(1, 9)
 
-economy()
+# task 17.2 - Телефонная книга
+def bookNumber():
+    size = checkForNumber(input('- Введите размер телефонной книги - '))
+    col = {input('\n - Пользователь - '):input(' - Мобильный - ') for step in range(size)}
+    for step in range(checkForNumber(input('\n- Сколько ждать запросов? - '))):
+        print('- Результат - ' + col.get(input(' - Запрос по имени №' + str(step + 1) + ': '), 'Отсутствует!'))
 
+# task 17.3 - Дни Рождения №2
+def swki():
+    size = checkForNumber(input('- Введите кол-во ваших одноклассников.. - '))
+    col = {
+        input('\n - Имя пользователя - '):{
+        'day':input(' - День рождения - '),
+        'month':input(' - Месяц рождения - ')}
+        for step in range(size)}
+    for i in range(checkForNumber(input('\n- Сколько ждать запросов? - '))):
+        zapros = input('\n - Запрос по месяцу рождения №' + str(i + 1) + ': ')
+        for step in col:
+            if col[step]['month'] == zapros:
+                print('\n- Пользователь: ' + step + '\n- День рождения: ' + col[step]['day'], col[step]['month'])
 
+swki()
