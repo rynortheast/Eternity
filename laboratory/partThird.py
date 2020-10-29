@@ -179,4 +179,22 @@ def score(*args):
         return scoring[args[0]][args[1] - 1]
 # print(score('Внешнее кольцо', 15))
 
+# task 23.2 - Самая далёкая планета
+orbits = [(random.randint(1, 9), random.randint(1, 9)) for step in range(random.randint(2, 9))]
+def find_farthest_orbit(list_of_orbits):
+    col = [step[0] * step[1] for step in list_of_orbits]
+    return list_of_orbits[col.index(max(col))]
+# print(*find_farthest_orbit(orbits))
+
+# task 23.3 - Пам-парам парам-пам парам
+text = 'пара-ра-рам рам-пам-папам па-ра-па-дам'
+def vinny(text):
+    text = text.split()
+    if len(set([sum(i in 'аоуэыяёюеи' for i in k) for k in text])) == 1:
+        return "Парам пам-пам"  
+    else:
+        return "Пам парам"
+# print(vinny(text))
+
+
 
