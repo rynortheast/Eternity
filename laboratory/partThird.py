@@ -109,5 +109,30 @@ def palidrom(stroka):
         return '- Палидром'
     return '- Не Палидром'
 
+# task 20.1 - НРЗБРЧВ
+translatedText = 'Удивительный факт, но текст на языке НЕРАЗБОРЧИВО оказывается довольно просто читать и просто.. и и и' 
+def nrzbrchv():
+    global translatedText
+    vowel = 'аоуэыяёюеиАОУЭЫЯЁЮЕИ'
+    for i in vowel:
+        for k in range(translatedText.count(i)):
+            translatedText = translatedText.replace(i, '')
+    while translatedText.count('  '):
+        translatedText = translatedText.replace('  ', ' ')
+
+# task 20.3 - Несвежие анекдоты
+messages = set()
+def print_only_new(message):
+    if message not in messages:
+        print(message)
+    messages.add(message)
+
+# task 20.5 - Счастливый пассажир
+def lucky(number):
+    if sum([int(step) for step in number[:3]]) == sum([int(step) for step in number[-3:]]):
+        print("Счастливый")
+    else:
+        print("Обычный")
+
 
 
