@@ -115,10 +115,12 @@ def nrzbrchv():
     global translatedText
     vowel = 'аоуэыяёюеиАОУЭЫЯЁЮЕИ'
     for i in vowel:
-        for k in range(translatedText.count(i)):
+        while translatedText.count(i):
             translatedText = translatedText.replace(i, '')
     while translatedText.count('  '):
         translatedText = translatedText.replace('  ', ' ')
+    return translatedText
+#print(nrzbrchv())
 
 # task 20.3 - Несвежие анекдоты
 messages = set()
@@ -134,5 +136,24 @@ def lucky(number):
     else:
         print("Обычный")
 
+# task 21.1 - Числа в строку
+nba = [random.randint(0, 10) for step in range(random.randint(2, 5))]
+def from_string_to_list(string, container):
+    return container + string.split(' ')
+# print(*from_string_to_list('1 5 3 9 3', nba))
 
+# task 21.2 - Транспонирование
+rand = random.randint(1, 9)
+matrix = [[random.randint(1, 9) for g in range(rand)] for h in range(rand)]
+def transpose(matrix):
+    return [ [ matrix[k][i] for k in range(len(matrix)) ] for i in range(len(matrix)) ]
+# print(*matrix, sep='\n')
+# print('', *transpose(matrix), sep='\n')
+
+# task 21.6 - Фрактальное дерево
+white = []
+black = [white, white, white]
+white.append(black)
+white.append(black)
+wb_tree = black
 
