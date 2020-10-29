@@ -52,4 +52,62 @@ def lines(k, b, cord):
         return True
     return False
 
-lines(1, 6, '1;7')
+# task 19.1 - Месяц / Month
+def month_name(number, lang):
+    col = {
+        'rus':{
+            1:'Январь',
+            2:'Февраль',
+            3:'Март',
+            4:'Апрель',
+            5:'Май',
+            6:'Июнь',
+            7:'Июль',
+            8:'Август',
+            9:'Сентябрь',
+            10:'Октябрь',
+            11:'Ноябрь',
+            12:'Декабрь'
+        },
+        'en':{
+            1:'January',
+            2:'February',
+            3:'March',
+            4:'April',
+            5:'May',
+            6:'June',
+            7:'July',
+            8:'August',
+            9:'September',
+            10:'October',
+            11:'November',
+            12:'December'
+        }
+    }
+    return col[lang][int(number)]
+
+# task 19.2 - Ход конём
+def possible_turns(k):
+    bykva = 'ABCDEFGH'.find(k[0])
+    col = [
+        (bykva + 1, int(k[1]) + 2),
+        (bykva + 2, int(k[1]) + 1),
+        (bykva + 2, int(k[1]) - 1),
+        (bykva + 1, int(k[1]) - 2),
+        (bykva - 1, int(k[1]) - 2),
+        (bykva - 2, int(k[1]) - 1),
+        (bykva - 2, int(k[1]) + 1),
+        (bykva - 1, int(k[1]) + 2),
+    ]
+    return sorted(['ABCDEFGH'[step[0]] + str(step[1]) for step in col if step[0] >= 0 and step[1] > 0 and step[0] < 8 and step[1] < 8])
+
+# task 19.4 - Палидромы
+def palidrom(stroka):
+    rev_stroka = list(stroka.lower())
+    rev_stroka.reverse()
+    if ''.join(rev_stroka) == stroka.lower():
+        return '- Палидром'
+    return '- Не Палидром'
+
+
+
