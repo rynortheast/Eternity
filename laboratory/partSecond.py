@@ -1,3 +1,4 @@
+import random
 
 # the core file used to start laboratory task
 def launch(lesson, number):
@@ -63,19 +64,6 @@ def sayAAA():
         print('Oh, YES YES YES')
     else:
         print('It\'s not okay.. STOP!')
-
-# task 10.6
-def snail(): # Доделать позже
-    print('Давай поможем улитке составить маршрут (ノ°益°)ノ\n')
-
-    route = ''.join(input('Ввод символа и маршрута: ').strip().split(' '))
-    counter = 0
-    # for step in range(len(route)):
-        # if route[step] == '>':
-        #    if route[step + 1] == '>':
-        # elif route[step] == '>':
-        # elif route[step] == 'V':
-        # else:
         
 # task 11.1
 def coin():
@@ -125,6 +113,7 @@ def buyProduct():
         myList.append(str(checkForNumber(input(' - Ввод кол-во товара - '))) + 'шт')
     print('', *myList, sep='\n')
 
+# task 12.4
 def RLE():
     sequence = input('- Ввод числовой последовательности (ノ°益°)ノ - ')
     number = int(sequence[0])
@@ -138,6 +127,182 @@ def RLE():
             counter += 1
     print(str(counter) + ' - ' + str(number))
     
-RLE()
-        
+# task 13.1 - Напёрстки
+def thimbles():
+    print('Добро пожаловать в 0SkillGarbage! (≖ ͜ʖ≖) ')
+    numberThimb = checkForNumber(input('- Какое кол-во напёрстников используем? - '))
+    numberSwap = checkForNumber(input('- Какое кол-во перестановок делаем? - '))
+    searchNumber = checkForNumber(input('- Какое число будем искать? (' + str(1) + '-' + str(numberThimb) + ') - '))
+    while searchNumber > numberThimb:
+        searchNumber = checkForNumber(input('- ОШИБКА! Какое число будем искать? (' + str(1) + '-' + str(numberThimb) + ') - '))
+    # kodSettings = input('- Нужен ли код настройки? - ')
 
+    game = list(range(1, numberThimb + 1))
+
+    print('\n ~~~~~~~~~~ Да начнем нашу игру! ( ͡ᵔ ͜ʖ ͡ᵔ) ~~~~~~~~~~ \n')
+    for step in range(numberSwap):
+        indexs = (random.randint(0, numberThimb - 1), random.randint(0, numberThimb - 1))
+        game[indexs[0]], game[indexs[1]] = game[indexs[1]], game[indexs[0]]
+    
+    for step in range(numberThimb):
+        print(' [' + str(step + 1) + '(ʘ ʖ̯ ʘ)' + str(step + 1) + '] ', sep='', end=' ')
+
+    print(game)
+    while True:
+        vibor = checkForNumber(input('\n- Твой выбор это.. - '))
+        try:
+            if game[vibor - 1] == searchNumber:
+                break
+        except:
+            print(' ')
+        print(' - Не повезло. Ок, пробуй еще один раз ( ͡ᵔ ͜ʖ ͡ᵔ)')
+    print('Поздравляю! Ты нашёл нужное число. Игра окончена! (≖ ͜ʖ≖)')
+
+# task 13.2 - Сортировка в обратном порядке
+def revSorded():
+    number = checkForNumber(input('Какое кол-во чисел ждать? - '))
+    collection = list(range(number))
+    for step in range(number):
+        collection[step] = checkForNumber(input('- Ввод числа №' + str(step + 1) + ': '))
+    collection = sorted(collection)
+    collection.reverse()
+    print(*collection)
+
+# task 13.3 - A272727
+def A272727():
+    number = checkForNumber(input('- Какую длину последовательности ждёте? - '))
+    bag = (0, 1, 0, 3, 0, 3, 0)
+    col = list()
+    counter = 0
+
+    for step in range(number):
+        if step + 1 <= len(bag):
+            col.append(bag[step])
+        else:
+            for i in range(len(col)):
+                if col[i] == col[0 - 1 - i]:
+                    counter += 1
+            col.append(counter)
+            counter = 0
+
+    if number == 0:
+        print('Игра окончена, так и не начавшись! (≖ ͜ʖ≖)')
+    else:
+        print('Вот вся последовательность:', *col)
+
+# task 13.6 - Большие буквы №2
+def bigWord():
+    text = input('- Ввод любого текста - ')
+    codeChar = (' * * ***** ** *', '** * *** * *** ', ' * * **  * * * ')
+    
+    print('\n~ Преобразуем ваш текст в большие буквы! (≖ ͜ʖ≖) \n')
+    for step in range(0, 15, 3):
+        for i in range(len(text)):
+            for j in range(3):
+                print(codeChar[i][j + step], end='', sep='')
+            print('  ', sep='', end='')
+        print('')
+
+# task 14.3 - Маяковский
+def mayk():
+    print(*input('@ ~ Ввод любого текста: ').split(' '), sep='\n')
+
+# task 14.4 - Вертикальная диаграмма
+def vertDiag():
+    col = input('- Ввод нескольких натуральных чисел через пробел - ').split(' ')
+    print('*'*(len(col) + 2), '\n*' + ' '*len(col) + '*', sep='')
+    for step in range(int(max(col))):
+        print('*', end='')
+        for i in range(len(col)):
+            if int(max(col)) - int(col[i]) - step <= 0:
+                print('*', end='')
+                continue
+            print(' ', end='')
+        print('*')
+
+
+# task 15.1 - Гэтсби
+def gadsby():
+    bykva = input('- Введите букву, которую будем искать - ')
+    words = input('- Введите предложение, в котором будем искать нужную букву - ')
+    print(*[step for step in words.lower().split(' ') if str(step).find(bykva.lower()) != -1], sep='\n') 
+
+# task 15.2 - Знаков без пробелов
+def sqwn():
+    text = input('- Введите любой текст - ')
+    print(' - Длина текста составляет -', len(''.join(''.join(text.strip().split(' ')).split('\t'))))
+
+# task 15.3 - Длинношееееед
+def longNecked():
+    word = input('- Введите слово - ')
+    col = [word.count(step) for step in list(word)]
+    print(' - Максимальное кол-во раз -', max(col))
+
+# task 16.3 - Бактериям бой!
+def bacteria():
+    size = checkForNumber(input('- Введите размер квадратного поля - '))
+    col = [[random.randint(1, 20) for step in range(size)] for step in range(size)]
+    
+    # print(*col, sep='\n')
+    for step in range(checkForNumber(input('- Введите кол-во капель антибиотика - '))):
+        x = checkForNumber(input(' - Координата x выстрела №' + str(step + 1) + ' = ')) - 1
+        y = checkForNumber(input(' - Координата y выстрела №' + str(step + 1) + ' = ')) - 1
+        for i in range(x - 1, x + 2):
+            for k in range(y - 1, y + 2):
+                try:
+                    if col[i][k] - 4 <= 0:
+                        col[i][k] = 0
+                    else:
+                        col[i][k] -= 4
+                except:
+                    continue
+    print('', *col, sep='\n')    
+def checkBacteria(one, two):
+    if one - two < 0:
+        return 0
+    return one - two
+
+# task 16.4 - Экономия
+def economy():
+    size = checkForNumber(input('- Введите размер расписания - '))
+    col = [[checkStation(k, j) for j in range(size)] for k in range(size)]
+    
+    route = input('- Введите свой маршрут - ').split(' ')
+
+    price = 1000
+    stantion = 1000
+    for step in range(size):
+        if col[int(route[0]) - 1][step] == 0:
+            continue
+        if col[int(route[0]) - 1][step] + col[step][int(route[1]) - 1] < price:
+            price = col[int(route[0]) - 1][step] + col[step][int(route[1]) - 1]
+            stantion = step + 1
+    print(*col, sep='\n')
+    print('Пересадка через станцию №' + str(stantion) + ' - цена поездки = ' + str(price))
+def checkStation(k, j):
+    if k == j:
+        return 0
+    return random.randint(1, 9)
+
+# task 17.2 - Телефонная книга
+def bookNumber():
+    size = checkForNumber(input('- Введите размер телефонной книги - '))
+    col = {input('\n - Пользователь - '):input(' - Мобильный - ') for step in range(size)}
+    for step in range(checkForNumber(input('\n- Сколько ждать запросов? - '))):
+        print('- Результат - ' + col.get(input(' - Запрос по имени №' + str(step + 1) + ': '), 'Отсутствует!'))
+
+# task 17.3 - Дни Рождения №2
+def swki():
+    size = checkForNumber(input('- Введите кол-во ваших одноклассников.. - '))
+    col = {
+        input('\n - Имя пользователя - '):{
+        'day':input(' - День рождения - '),
+        'month':input(' - Месяц рождения - ')}
+        for step in range(size)}
+    for i in range(checkForNumber(input('\n- Сколько ждать запросов? - '))):
+        zapros = input('\n - Запрос по месяцу рождения №' + str(i + 1) + ': ')
+        for step in col:
+            if col[step]['month'] == zapros:
+                print('\n- Пользователь: ' + step + '\n- День рождения: ' + col[step]['day'], col[step]['month'])
+
+swki()
