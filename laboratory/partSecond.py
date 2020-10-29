@@ -304,5 +304,3 @@ def swki():
         for step in col:
             if col[step]['month'] == zapros:
                 print('\n- Пользователь: ' + step + '\n- День рождения: ' + col[step]['day'], col[step]['month'])
-
-swki()
