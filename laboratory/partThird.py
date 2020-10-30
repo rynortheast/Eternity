@@ -196,5 +196,17 @@ def vinny(text):
         return "Пам парам"
 # print(vinny(text))
 
+# task 24.1 - Есть ли 0
+table = [random.randint(0, 99) for k in range(rand) for i in range(random.randint(2, 9))]
+def yes_or_no(matrix):
+    return not all(matrix)
+#print(yes_or_no(table))
 
+# task 24.4 - Ох уж эти анограммы
+def anagrams():
+    col = [input(' - Ввод слова #' + str(step + 1) + ' - ') for step in range(int(input('- Сколько слов ждать? - '))) ]
+    mas = set([''.join(sorted(list(step))) for step in col])
+    for step in mas:
+        print(*[word for word in col if sorted(list(word)) == list(step)])
 
+anagrams()
