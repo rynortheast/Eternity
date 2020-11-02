@@ -67,3 +67,20 @@ def board(num, size):
     new_image.save('res.png', 'PNG')
 # board(8, 50)
 
+# task 27.1 - Миниатюра для сайта
+def make_preview(size, colors):
+    im = Image.open('image.jpg')
+    im = im.resize(size)
+    im = im.quantize(colors)
+    im.save('res.bmp')
+# make_preview((300, 200), 64)
+
+def negative(source):
+    source = Image.open(source)
+    result = Image.new('RGB', source.size)
+    for k in range(source.size[0]):
+        for t in range(source.size[1]):
+            r, g, b = source.getpixel((k, t))
+            result.putpixel((k, t), (255 - r, 255 - g, 255 - b))
+    result.save('res.png', "PNG")
+# negative('image.jpg')
