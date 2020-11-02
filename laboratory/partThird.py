@@ -208,5 +208,3 @@ def anagrams():
     mas = set([''.join(sorted(list(step))) for step in col])
     for step in mas:
         print(*[word for word in col if sorted(list(word)) == list(step)])
-
-anagrams()
