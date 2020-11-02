@@ -28,6 +28,7 @@ def generator_password_v2(length):
         col[step] = random.randint(alfavit[col[step]][0], alfavit[col[step]][-1])
     return ''.join([chr(step) for step in col])
 
+def main_v2(n, m):
     if m < 3:
         return '- Выберите другую длину пароля!'
     return [generator_password_v2(m) for step in range(n)]
@@ -42,3 +43,27 @@ def pi():
         y = random.random() * ((step + 1) / (step + 1))
         number += (x * x + y * y < 1.0)
     return 4 * number / 500000
+
+
+# task 26.1 - Нарисуй градиент!
+def draw_gradient(color):
+    new_image = Image.new('RGB', (510, 200), (0, 0, 0))
+    draw = ImageDraw.Draw(new_image)
+    for i in range(0, 512, 2):
+        rgb = tuple(int(i / 2) if step == 'rgb'.find(color) else 0 for step in range(3))
+        draw.line((i, 0, i + 1, 200), fill=rgb, width=3)
+    new_image.save('res.png', 'PNG')
+# draw_gradient('b')
+
+# task 26.2 - Шахматы
+def board(num, size):
+    new_image = Image.new('RGB', (num * size, num * size), (255, 255, 255))
+    draw = ImageDraw.Draw(new_image)
+
+    for k in range(0, num * size, size):
+        for t in range(0, num * size, size):
+            if (k + t) % (size * 2) == 0:
+                draw.rectangle((k, t, k + size - 1, t + size - 1), fill=(0, 0, 0), width=0)
+    new_image.save('res.png', 'PNG')
+# board(8, 50)
+
